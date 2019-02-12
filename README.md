@@ -18,7 +18,9 @@ Introduction to shangxian.app
 | 变量名称 | 变量值 | 说明 |
 | --- | --- | --- |
 | `DOCKER_NGINX_CONTAINER_NAME` | `nginx` | Docker Nginx 容器名称 |
-| `NGINX_VHOST_DIR` | `/home/xiaowu/local/nginx-vhost` | Nginx 虚拟主机目录，使用 Docker Nginx 映射到该目录 |
+| `DOCKER_PRIVATE_NETWORK_NAME` | `network-private-01` | Docker 私有网络名称，用于链接多个容器 |
+| `DOCKER_DATA_DIR` | `/home/xiaowu/docker/data` | Docker 数据目录，比如：Jenkins、Nginx 配置 |
+| `NGINX_VHOST_DIR` | `/home/xiaowu/docker/data/nginx-vhost` | Nginx 虚拟主机目录，使用 Docker Nginx 映射到该目录 |
 | `USER` | `xiaowu` | 当前用户 |
 | `USER_GROUP` | `work` | 当前用户组 |
 
@@ -39,3 +41,11 @@ Introduction to shangxian.app
 | 变量名称 | 变量值 | 说明 |
 | --- | --- | --- |
 | `HOSTNAME` | `sg02` | 主机名 |
+
+## Docker
+
+### Network
+
+```bash
+docker network create "${DOCKER_PRIVATE_NETWORK_NAME}"
+```
