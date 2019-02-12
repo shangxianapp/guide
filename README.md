@@ -15,7 +15,27 @@ Introduction to shangxian.app
 
 ### common
 
-- `$LOCAL_DIR` - 软件安装目录
-- `$NGINX_DIR` - Nginx 安装目录，如使用 `$NGINX_DIR/bin/nginx` 为可执行文件
-- `$NGINX_CONF_PATH` - Nginx 配置文件路径，注意：这是 `nginx.conf` 文件路径，不是目录
-- `$NGINX_VHOST_DIR` - Nginx 虚拟主机目录
+| 变量名称 | 变量值 | 说明 |
+| --- | --- | --- |
+| `DOCKER_NGINX_CONTAINER_NAME` | `nginx` | Docker Nginx 容器名称 |
+| `NGINX_VHOST_DIR` | `/home/xiaowu/local/nginx-vhost` | Nginx 虚拟主机目录，使用 Docker Nginx 映射到该目录 |
+| `USER` | `xiaowu` | 当前用户 |
+| `USER_GROUP` | `work` | 当前用户组 |
+
+### bj01
+
+| 变量名称 | 变量值 | 说明 |
+| --- | --- | --- |
+| `HOSTNAME` | `bj01` | 主机名 |
+
+### sg01
+
+| 变量名称 | 变量值 | 说明 |
+| --- | --- | --- |
+| `HOSTNAME` | `sg01` | 主机名 |
+
+### sg02
+
+| 变量名称 | 变量值 | 说明 |
+| --- | --- | --- |
+| `HOSTNAME` | `sg02` | 主机名 |
