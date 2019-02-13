@@ -93,7 +93,12 @@ mkdir -p \
     ~/wwwroot \
     ~/local/nginx-vhost \
     ~/local/nginx-cache \
+    ~/.ssh \
     ~/local/jenkins
+
+# 配置 .ssh 权限
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
 
 # 创建环境变量
 echo '# 环境变量配置
