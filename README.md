@@ -22,7 +22,7 @@ Introduction to shangxian.app
 | `DOCKER_DATA_DIR` | `/home/xiaowu/docker/data` | Docker 数据目录，比如：Jenkins、Nginx 配置 |
 | `NGINX_VHOST_DIR` | `/home/xiaowu/docker/data/nginx-vhost` | Nginx 虚拟主机目录，使用 Docker Nginx 映射到该目录 |
 | `USER` | `xiaowu` | 当前用户 |
-| `USER_GROUP` | `work` | 当前用户组 |
+| `USER_GROUP` | `xiaowu` | 当前用户组 |
 
 ### bj01
 
