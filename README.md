@@ -11,6 +11,12 @@ Introduction to shangxian.app
 - Shadowsocks - v.p.n
 - MTProxy - Telegram Proxy
 
+## Domain
+
+- `bj01.ddns.shangxian.app` - bj01 服务器映射
+- `sg01.ddns.shangxian.app` - sg01 服务器映射
+- `sg02.ddns.shangxian.app` - sg02 服务器映射
+
 ## Env
 
 ### common
