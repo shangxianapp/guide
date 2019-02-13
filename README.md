@@ -85,6 +85,9 @@ echo 'xiaowu    ALL=(ALL)       ALL' >> /etc/sudoers
 groupadd docker
 gpasswd -a xiaowu docker
 
+# 设置权限，让 Jenkins 中的用户可以直连 docker
+chmod 777 /var/run/docker.sock
+
 # 开机启动 Docker
 systemctl enable docker
 
