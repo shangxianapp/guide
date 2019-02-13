@@ -53,6 +53,7 @@ yum update -y
 
 # 安装依赖
 yum install -y \
+    git \
     vim \
     sudo \
     wget \
@@ -102,14 +103,14 @@ chmod 600 ~/.ssh/authorized_keys
 
 # 创建环境变量
 echo '# 环境变量配置
-DOCKER_JENKINS_CONTAINER_NAME=jenkins
-DOCKER_NGINX_CONTAINER_NAME=nginx
-DOCKER_PRIVATE_NETWORK_NAME=network-private-01
-DOCKER_NGINX_VHOST_DIR=$HOME/local/nginx-vhost
-DOCKER_JENKINS_DATA_DIR=$HOME/local/jenkins
-WWWROOT_DIR=$HOME/wwwroot
-LOCAL_DIR=$HOME/local
-PATH=$PATH:$HOME/bin' > ~/.env
+export DOCKER_JENKINS_CONTAINER_NAME=jenkins
+export DOCKER_NGINX_CONTAINER_NAME=nginx
+export DOCKER_PRIVATE_NETWORK_NAME=network-private-01
+export DOCKER_NGINX_VHOST_DIR=$HOME/local/nginx-vhost
+export DOCKER_JENKINS_DATA_DIR=$HOME/local/jenkins
+export WWWROOT_DIR=$HOME/wwwroot
+export LOCAL_DIR=$HOME/local
+export PATH=$PATH:$HOME/bin' > ~/.env
 echo '[ -s "$HOME/.env" ] && \. "$HOME/.env"' >> ~/.bashrc
 source ~/.bashrc
 
