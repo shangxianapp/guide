@@ -26,6 +26,7 @@ Introduction to shangxian.app
 | `DOCKER_NGINX_CONTAINER_NAME` | `nginx` | Docker Nginx 容器名称 |
 | `DOCKER_PRIVATE_NETWORK_NAME` | `network-private-01` | Docker 私有网络名称，用于链接多个容器 |
 | `DOCKER_NGINX_VHOST_DIR` | `/home/xiaowu/local/nginx-vhost` | Nginx 虚拟主机目录，使用 Docker Nginx 映射到该目录 |
+| `DOCKER_NGINX_CA_DIR` | `/home/xiaowu/local/nginx-ca` | Nginx SSL 证书目录 |
 | `WWWROOT_DIR` | `/home/xiaowu/wwwroot` | 网站根目录，以域名存放子目录 |
 | `LOCAL_DIR` | `/home/xiaowu/local` | 应用本地目录 |
 | `USER` | `xiaowu` | 当前用户 |
@@ -102,7 +103,7 @@ mkdir -p \
     ~/bin \
     ~/wwwroot \
     ~/local/nginx-vhost \
-    ~/local/nginx-cache \
+    ~/local/nginx-ca \
     ~/.ssh \
     ~/local/jenkins
 
@@ -116,6 +117,7 @@ export DOCKER_JENKINS_CONTAINER_NAME=jenkins
 export DOCKER_NGINX_CONTAINER_NAME=nginx
 export DOCKER_PRIVATE_NETWORK_NAME=network-private-01
 export DOCKER_NGINX_VHOST_DIR=$HOME/local/nginx-vhost
+export DOCKER_NGINX_CA_DIR=$HOME/local/nginx-ca
 export DOCKER_JENKINS_DATA_DIR=$HOME/local/jenkins
 export WWWROOT_DIR=$HOME/wwwroot
 export LOCAL_DIR=$HOME/local
