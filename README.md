@@ -1,5 +1,5 @@
 # guide
-Introduction to shangxian.app
+Introduction to Shangxian APP
 
 ## Service
 
@@ -16,6 +16,42 @@ Introduction to shangxian.app
 - `bj01.ddns.shangxian.app` - bj01 服务器映射
 - `sg01.ddns.shangxian.app` - sg01 服务器映射
 - `sg02.ddns.shangxian.app` - sg02 服务器映射
+- <https://shangxian.app> - Shangxian APP
+- <https://jenkins.shangxian.app> - Jenkins
+- <https://netdata.shangxian.app> - Netdata 服务器监控
+- <https://portainer.shangxian.app> - Docker Web 可视化管理平台，基于 [Portainer](https://github.com/portainer/portainer)
+
+## 授权
+
+为了避免 Jenkins Job Console Log 明文出现密钥，使用 Jenkins 凭据管理，且把密钥、Token 等也存放在凭证里，使用统一的命名规则，如：
+
+- `shangxianapp-xiaowu-ssh-key` - 登录各个服务器 `@xiaowu` 帐号的密钥
+- `shangxianapp-github-xuexb-ssh-key` - GitHub `@xuexb` 用户的密钥
+- `shangxianapp-github-xuexb-access-token` - GitHub `@xuexb` 用户的 Access Token
+- `shangxianapp-aliyun-xuexb-apikey`、`shangxianapp-aliyun-xuexb-secret` - 阿里云相关令牌
+- `shangxianapp-namecom-xuexb-apikey`、`shangxianapp-namecom-xuexb-secret` - name.com 相关令牌
+- `shangxianapp-shadowsocks-port`、`shangxianapp-shadowsocks-pwd` - SS 相关令牌
+
+这些凭据可以直接在 Jenkins Job 或者 Jenkins Pipeline 脚本使用，并且会以 `****` 显示。
+
+## Nginx Proxy
+
+由于在服务器中肯定是有多个 Web Server 的，而使用 Docker 容器化后需要对外暴露端口，但由于端口只能占用一个（比如：80、443），那么就在每个服务器中专门启用一个 Nginx Proxy Docker 专门来反向代理各个虚拟主机（ Web Server ），约定好统一的目录，比如：
+
+- `DOCKER_NGINX_VHOST_DIR` - 虚拟主机配置目录，以 `域名.conf` 存放配置文件
+- `DOCKER_NGINX_CA_DIR` - SSL 证书存放目录，以 `域名` 为子目录存放
+- `DOCKER_NGINX_DIR` - Nginx 运行目录，配置文件更新后可以运行 `/bin/sh ${DOCKER_NGINX_DIR}/reload.sh` 来刷新 Nginx Proxy Docker
+- `WWWROOT_DIR` - 网站目录映射，以 `域名` 为子目录存放，可以在 Nginx 配置文件里使用，比如设置 `root` 目录
+
+> 更多 Nginx Proxy Docker 请看：<https://github.com/shangxianapp/docker-sg02-nginx-proxy>
+
+为了更好的在 Nginx 配置文件中读取变量，专门创建了支持 Lua、echo-nginx 的 Nginx:alpine 镜像：<https://github.com/shangxianapp/docker-nginx-alpine>
+
+## SSL 证书同步
+
+由于是需要多个服务器同步证书，启用了一个 Jenkins Job 来每三个月处理证书，由于证书有好几个，使用 Jenkins Pipeline 脚本生成，这样也可以直接使用 Jenkins 凭据密钥，再结合 Jenkins Pipeline parallel 并行生成证书，并同步到各个服务器，最后再重启 Nginx Proxy Docker 。
+
+> 生成脚本见：<https://github.com/shangxianapp/docker-auto-ssl>
 
 ## Env
 
@@ -68,7 +104,7 @@ yum install -y \
     yum-utils \
     device-mapper-persistent-data \
     htop \
-    lvm2 
+    lvm2b
 
 # 安装 Docker
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
